@@ -21,10 +21,18 @@ teams actually trust and act on what the automation tells them.
 
 ## Part 3: Walking the pipeline log (3 min)
 
-Read through `sample-pipeline-log.txt` stage by stage: Checkout, Build, Test all pass. Then
+Read through `sample-pipeline-log.txt` stage by stage: Checkout, Build, and Test (unit tests)
+all pass, then **Acceptance Test** also passes, deploying the build to staging and running 8
+scenarios against it to confirm the feature actually satisfies its acceptance criteria (from
+Module 01/02's story-writing work), not just that it compiles and unit-tests cleanly. Then
 **Security Scan** fails: a dependency scan tool found a critical vulnerability
 (`CVE-2019-12384`) in a library the project depends on, and the pipeline is configured to fail
 on any CRITICAL finding. **Deploy never runs.**
+
+Narration: point out that Acceptance Test and Security Scan are checking two completely
+different things. Acceptance Test asks "does this do what the Product Owner asked for?"
+Security Scan asks "does this introduce a known risk?" A pipeline can pass one and fail the
+other, and both matter.
 
 ## Part 4: Interpreting it with GenAI (2 min)
 

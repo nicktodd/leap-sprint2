@@ -28,7 +28,8 @@ By the end of this lab you will have:
 
 1. **Identify the stages**
    List every stage in the pipeline, in order, and mark which ones passed and which one (if
-   any) failed.
+   any) failed. For the `Test` and `Acceptance Test` stages specifically, write one sentence
+   each on what each one is actually checking, and how they differ.
 
 2. **Read the failure**
    For the failed stage, copy the exact error line(s) from the log. What tool produced this

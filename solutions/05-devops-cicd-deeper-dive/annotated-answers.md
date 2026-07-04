@@ -7,8 +7,15 @@
 | Checkout | Passed |
 | Build | Passed |
 | Test | Passed (14/14 tests) |
+| Acceptance Test | Passed (8/8 scenarios against staging) |
 | Security Scan | **Failed** |
 | Deploy | Never ran |
+
+Worth drawing out: Test and Acceptance Test are checking different things. Test is unit-level
+(does this method behave correctly in isolation). Acceptance Test deploys the build to staging
+and checks the feature against its acceptance criteria (from Sprint 2 Modules 01-02), i.e. does
+it satisfy what the Product Owner actually asked for. A pipeline can be green on one and not
+the other.
 
 ## 2. The failure, quoted
 
