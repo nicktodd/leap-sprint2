@@ -1,4 +1,6 @@
 <!-- PaySprint Mobile - pom.xml (excerpt) -->
+<!-- No version pinning strategy, no automated dependency update checks, and no
+     verification of where these artifacts are actually pulled from at build time. -->
 <dependencies>
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
