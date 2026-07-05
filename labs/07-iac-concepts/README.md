@@ -61,3 +61,25 @@ By the end of this lab you will have:
 If you finish early, look up one other resource type in the AWS provider (for example
 `aws_iam_role`) and sketch, in plain English, what block you'd add to attach a minimal
 read-only IAM role to this bucket.
+
+## Optional: run it for real (only if you have AWS sandbox access)
+
+Full hands-on cloud work comes in a later sprint, so this part is optional and only for
+delegates who already have access to an AWS sandbox account today. If you don't, watch the
+trainer's demo instead, don't use production credentials for this under any circumstances.
+
+1. Install Terraform and confirm it with `terraform -version`.
+2. Configure sandbox credentials, ideally a named AWS CLI profile rather than raw environment
+   variables:
+   ```bash
+   aws configure --profile sprint2-sandbox
+   export AWS_PROFILE=sprint2-sandbox
+   ```
+3. `terraform init` in the folder containing your annotated config.
+4. `terraform plan -var="environment=<your-initials>"` and read through the proposed changes,
+   do they match what you expected from your annotation?
+5. `terraform apply -var="environment=<your-initials>"`, confirm with `yes`, and check the
+   bucket now exists in the AWS S3 console.
+6. **Before you finish**: `terraform destroy -var="environment=<your-initials>"`, and confirm
+   the bucket is gone. Leaving training resources running, even low-cost ones like an empty S3
+   bucket, is a habit worth not building.
