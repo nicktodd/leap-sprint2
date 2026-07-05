@@ -1,5 +1,17 @@
 # Module 12 Lab — Model Answer (Instructor Reference)
 
+## Warm-up answers
+
+```text
+99.5% SLO: error budget = 0.5% of 43,200 = 216 minutes
+99.95% SLO: error budget = 0.05% of 43,200 = 21.6 minutes
+```
+
+Halving the allowed failure rate (0.5% to 0.05%, a factor of 10 in this case, "one extra nine")
+shrinks the budget by the same factor, from 216 minutes down to 21.6 minutes. Worth delegates
+seeing this arithmetic directly: reliability targets don't cost linearly more as they tighten,
+they cost punishingly more.
+
 ## 1. Error budget
 
 ```text

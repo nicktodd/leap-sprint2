@@ -1,10 +1,17 @@
 # Module 12 Lab — Error Budget, Ship or Stabilise?
 
+## Key terms, spelled out
+
+- **SLI, Service Level Indicator**: what you actually measure (e.g. % of requests under 200ms)
+- **SLO, Service Level Objective**: your internal target for that measurement (e.g. 99.9%)
+- **SLA, Service Level Agreement**: a contractual commitment to an external party, usually
+  looser than your SLO, with real consequences if missed
+
 ## Objectives
 
 By the end of this lab you will have:
 
-- Calculated an error budget from a stated SLO
+- Calculated an error budget from a stated SLO, for two different SLO strictness levels
 - Determined whether a fictional service has breached its error budget over the last 30 days
 - Decided, with reasoning, whether the team should ship a new feature or focus on reliability
 - Presented your reasoning to the group
@@ -13,6 +20,18 @@ By the end of this lab you will have:
 
 - [`sli-data.md`](sli-data.md) from this lab: 30 days of downtime data for the fictional
   "PaySprint Notifications API," and its stated SLO
+
+## Warm-up: two quick budget calculations
+
+Before the main exercise, calculate the error budget (in minutes) for each of these SLOs, over
+a 30-day window (43,200 minutes total):
+
+1. An SLO of **99.5%** availability
+2. An SLO of **99.95%** availability
+
+Compare the two: how much does the budget shrink for that extra half a nine of reliability?
+This is worth doing by hand once, so the main exercise's numbers feel concrete rather than
+abstract.
 
 ## Task sheet
 
