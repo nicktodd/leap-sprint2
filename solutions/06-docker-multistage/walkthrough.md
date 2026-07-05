@@ -60,12 +60,44 @@ This confirms the bridge network: `db` resolves to the Postgres container's inte
 entirely separate from anything on the host.
 
 ```bash
+# Inspecting the network docker-compose created:
+docker network ls
+docker network inspect <project-dir-name>_default
+# both app and db appear under "Containers", each with its own internal IP
+```
+
+```bash
 # From the host, confirming the port mapping:
 docker exec -it <db-container-name> psql -U postgres -c "SELECT 1;"
 ```
 
 Or connect a local Postgres client to `localhost:5432` to confirm the same thing from outside
-Docker entirely.
+Docker entirely. Note that `app` has no `ports:` entry in `docker-compose.yml`, so there is no
+equivalent host-side check for it, it's unreachable outside the bridge network by design.
+
+## The up/down lifecycle
+
+```bash
+docker compose down
+docker compose ps          # empty, both containers removed
+docker network ls          # the project's network is gone too
+```
+
+```bash
+docker compose down -v
+# additionally removes the named volume backing postgres's data directory
+# next `docker compose up -d` starts db with a completely empty database
+```
+
+```bash
+docker compose up -d
+docker network inspect <project-dir-name>_default
+# a freshly created network, with new container IPs, different from before
+```
+
+This last step is worth actually doing, not just describing, delegates should see the IPs
+change and understand that `up`/`down` create and destroy real resources, they aren't a
+pause/resume pair.
 
 ## What to check as an instructor
 
@@ -77,3 +109,5 @@ Docker entirely.
   container escape or RCE doesn't hand an attacker root on the host).
 - Both docker-compose checks (hostname resolution and port mapping) were actually run, not just
   assumed to work.
+- Delegates can explain the difference between `docker compose down` and `down -v`, and can
+  correctly say that only `db`, not `app`, is reachable from the host, and why.

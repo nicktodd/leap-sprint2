@@ -58,18 +58,59 @@ docker images
 
 Compare the size against the original image.
 
-## Part 4: Networking and docker-compose (3 min)
+## Part 4: docker-compose, up, and the network it creates (4 min)
 
 ```bash
 docker compose up -d
 docker compose ps
+docker network ls
+```
+
+Narration: `docker compose up` does three things: creates a private **bridge network** scoped
+to this project, creates a container for every service, and starts them all. `docker network
+ls` shows the network it just created, named after the project folder by default.
+
+```bash
+docker network inspect <project-name>_default
+```
+
+Narration: this shows every container attached to the network and the private IP address each
+one has been given. These IPs mean nothing outside Docker, containers use them (or, more
+usually, the service name) to talk to each other, your host machine doesn't use them at all.
+
+```bash
 docker exec -it <app-container> sh -c "getent hosts db"
 ```
 
-Narration: `docker-compose` creates a private **bridge network** for the services it defines.
-Containers reach each other by service name (`db`) as a hostname, entirely separate from
-anything on the host. The `ports:` mapping in `docker-compose.yml` is the only thing exposing a
-container's port to the host machine, everything else stays internal to the bridge network.
+Narration: `db` resolves because `docker-compose` runs DNS for the containers it manages,
+`app` never hardcodes an IP, it just uses the service name from `docker-compose.yml`. This is
+**service discovery**, and it's the main reason people reach for compose over plain `docker
+run` the moment more than one container needs to talk to another.
+
+Contrast this with the `ports:` mapping: only `db` has one, so only `db` is reachable from the
+host machine on `localhost:5432`. `app` has no `ports:` entry, so it's invisible from outside
+Docker entirely, even though it's fully reachable from `db` inside the bridge network.
+
+## Part 5: Tearing it down (2 min)
+
+```bash
+docker compose down
+docker compose ps
+docker network ls
+```
+
+Narration: `down` is the mirror image of `up`, it stops every container, removes them, and
+removes the network `up` created. Point out that `docker compose ps` now shows nothing, and the
+project's network is gone from `docker network ls` too, this is destruction, not pausing.
+
+```bash
+docker compose down -v
+```
+
+Narration: plain `down` leaves named volumes alone, so a database's data survives being brought
+down and back up. `down -v` additionally removes those volumes, the next `up` starts from a
+completely empty database. Worth doing deliberately once, so it's an informed choice later, not
+a surprise the first time someone loses local data by habit.
 
 ## Key message
 

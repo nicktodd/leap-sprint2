@@ -48,19 +48,46 @@ By the end of this lab you will have:
    Note the size difference and explain, in your own words, why the multi-stage version is
    smaller.
 
-### Part C — docker-compose and networking
+### Part C — docker-compose, networking, and the up/down lifecycle
 
 7. Write a `docker-compose.yml` with two services: your app (`build: .`) and a `db` service
    using the official `postgres:16-alpine` image, with a password set via environment variable
    and port `5432` mapped to the host.
-8. Bring it up with `docker compose up -d`, and confirm both containers are running with
+
+8. **Bring it up** with `docker compose up -d`, and confirm both containers are running with
    `docker compose ps`.
-9. From inside the app container (`docker exec -it <container> sh`), confirm you can resolve
-   the `db` service by hostname (e.g. `getent hosts db`), demonstrating docker-compose's bridge
-   network.
-10. From your host machine, confirm you can connect to Postgres on the mapped port (e.g. using
-    a Postgres client, or simply `docker exec` into the `db` container and connecting locally),
-    demonstrating the port mapping.
+
+9. **Inspect the network docker-compose created for you:**
+   ```bash
+   docker network ls
+   docker network inspect <project-name>_default
+   ```
+   Find both your `app` and `db` containers listed under that network's containers, note the
+   private IP address each one has been given, these addresses are internal to Docker and
+   don't mean anything on your host machine's network.
+
+10. **Confirm DNS-based service discovery**: from inside the app container (`docker exec -it
+    <container> sh`), confirm you can resolve the `db` service by hostname (e.g. `getent hosts
+    db`). This is docker-compose's bridge network doing name resolution for you, `db` is not an
+    IP address anyone hardcoded, it's the service name from `docker-compose.yml`.
+
+11. **Confirm host port mapping**: from your host machine (outside any container), confirm you
+    can connect to Postgres on the mapped port, for example with a Postgres client pointed at
+    `localhost:5432`, or `docker exec` into the `db` container and connect to `localhost`
+    from there instead, and compare. Note that only the `db` service is reachable from the
+    host, because only it has a `ports:` mapping, the `app` service does not, and isn't
+    reachable from outside Docker at all unless you add one.
+
+12. **Bring it down**: run `docker compose down` and observe what happens.
+    - Run `docker compose ps` again, both containers should be gone.
+    - Run `docker network ls` again, the project's network should be gone too.
+    - Note that `docker compose down` does **not** remove the Postgres data by default, run
+      `docker compose down -v` instead and note that this additionally removes the named
+      volume, meaning next time you run `up` the database starts completely empty.
+
+13. **Bring it back up and confirm it's the same picture**: run `docker compose up -d` again,
+    and repeat step 9's network inspection. You should see a freshly created network with new
+    container IPs, `up` and `down` are not "pause" and "resume", they create and destroy things.
 
 ## Acceptance criteria
 
@@ -70,6 +97,8 @@ By the end of this lab you will have:
   non-root `USER`, and a JRE-only final base image.
 - `docker compose up -d` brings up both services, and you've demonstrated both bridge-network
   name resolution and host port mapping.
+- You can explain, in your own words, the difference between `docker compose down` and
+  `docker compose down -v`, and why only `db` (not `app`) is reachable from the host.
 
 If you finish early, try changing only a Java source file and rebuilding, does Docker skip the
 Maven dependency download step? That's layer caching working as intended.
