@@ -58,7 +58,7 @@ That's the practical meaning of "a failing pipeline protects main", not an abstr
 Point at the comparison diagram. Both do the same job, run pipelines on events. Jenkins:
 self-hosted, highly configurable, strong fit for complex or regulated environments already
 running their own infrastructure. GitHub Actions: cloud-native, tightly integrated with GitHub
-itself, faster to stand up for simpler workflows. Fidelity uses Jenkins across this programme,
+itself, faster to stand up for simpler workflows. This programme uses Jenkins throughout,
 mention GitHub Actions exists and why some teams choose it, but keep hands-on work in Jenkins.
 
 ## Key message

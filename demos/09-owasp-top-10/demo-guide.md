@@ -16,7 +16,7 @@ Narration: OWASP (Open Web Application Security Project) is a non-profit that pu
 freely-available security research, most famously the **OWASP Top 10**, a ranked list of the
 most critical web application security risks, refreshed periodically as the threat landscape
 shifts, the 2021 edition was replaced by the **2025 edition** (finalized January 2026), which
-is what this module uses throughout. It's not a compliance checklist invented by Fidelity, it's
+is what this module uses throughout. It's not a compliance checklist invented in-house, it's
 an industry-standard reference point, which is exactly why it's worth learning properly rather
 than treating as a box to tick. In financial services specifically: PaySprint handles money and
 personal financial data, the categories in this list map directly onto real regulatory and

@@ -7,8 +7,8 @@
 
 Narration: Site Reliability Engineering (SRE) treats operating software as an engineering
 problem, not a separate "ops" function bolted on afterwards. The same rigour applied to writing
-code (measurement, automation, iteration) gets applied to keeping it running reliably. At
-Fidelity, this means the team that builds a feature shares real accountability for how it
+code (measurement, automation, iteration) gets applied to keeping it running reliably. In
+practice, this means the team that builds a feature shares real accountability for how it
 behaves in production, not just for shipping it.
 
 Relate this back to Module 05's DevOps content: DevOps is the cultural shift (shared ownership,

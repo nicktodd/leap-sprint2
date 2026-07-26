@@ -1,7 +1,7 @@
-# Fidelity LEAP Program — Sprint 2 Lab Exercises
+# LEAP Program — Sprint 2 Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **Sprint 2: Engineering
-Practices — Agile, SRE & Cyber**, week 2 of the 11-sprint Fidelity LEAP graduate programme.
+Practices — Agile, SRE & Cyber**, week 2 of the 11-sprint LEAP graduate programme.
 
 ## Prerequisites
 
