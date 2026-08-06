@@ -21,9 +21,9 @@ By the end of this lab you will have:
 
 ## Setup
 
-- Docker Desktop 27.x
-- The [`starter/`](starter) folder from this lab, a copy of the Sprint 1 project skeleton with
-  its original single-stage `Dockerfile`
+- Access to your Linux Docker host — connect in your preferred way (see Sprint 1 Module 3)
+- The [`starter/`](starter) folder from this lab, cloned or copied onto the Linux host — a copy
+  of the Sprint 1 project skeleton with its original single-stage `Dockerfile`
 
 ## Task sheet
 
@@ -71,12 +71,13 @@ By the end of this lab you will have:
     db`). This is docker-compose's bridge network doing name resolution for you, `db` is not an
     IP address anyone hardcoded, it's the service name from `docker-compose.yml`.
 
-11. **Confirm host port mapping**: from your host machine (outside any container), confirm you
-    can connect to Postgres on the mapped port, for example with a Postgres client pointed at
-    `localhost:5432`, or `docker exec` into the `db` container and connect to `localhost`
-    from there instead, and compare. Note that only the `db` service is reachable from the
-    host, because only it has a `ports:` mapping, the `app` service does not, and isn't
-    reachable from outside Docker at all unless you add one.
+11. **Confirm host port mapping**: from your Linux Docker host itself (outside any container —
+    e.g. the same shell you ran `docker compose up` from), confirm you can connect to Postgres
+    on the mapped port, for example with a Postgres client pointed at `localhost:5432`, or
+    `docker exec` into the `db` container and connect to `localhost` from there instead, and
+    compare. Note that only the `db` service is reachable from the host, because only it has a
+    `ports:` mapping, the `app` service does not, and isn't reachable from outside Docker at all
+    unless you add one.
 
 12. **Bring it down**: run `docker compose down` and observe what happens.
     - Run `docker compose ps` again, both containers should be gone.
