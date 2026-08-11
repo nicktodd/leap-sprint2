@@ -18,7 +18,7 @@ By the end of this lab you will have:
 
 ### Part A — Find all five, before fixing any
 
-1. Read through every file in `starter/src/main/java/com/fidelity/leap/paysprint/`.
+1. Read through every file in `starter/src/main/java/com/neueda/leap/paysprint/`.
 2. For each of the five vulnerabilities you find, write down: the file, the OWASP Top 10 (2025)
    category, and the specific risk in plain English. Do this **before** asking Copilot for
    fixes, the identification is the skill being practised first.

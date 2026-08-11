@@ -20,7 +20,7 @@ git switch -c feature/add-farewell-message
 Edit `Main.java` to print a second line, then:
 
 ```bash
-git add src/main/java/com/fidelity/leap/Main.java
+git add src/main/java/com/neueda/leap/Main.java
 git commit -m "feat: add farewell message to startup output"
 git push -u origin feature/add-farewell-message
 ```

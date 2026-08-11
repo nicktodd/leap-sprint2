@@ -1,6 +1,6 @@
 # Lab 13 — Cyber Challenge: PaySprint Merchant Portal Security Audit
 
-**Codebase audited**: `starter/src/main/java/com/fidelity/leap/merchantportal/`
+**Codebase audited**: `starter/src/main/java/com/neueda/leap/merchantportal/`
 
 ---
 

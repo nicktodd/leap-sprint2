@@ -5,7 +5,7 @@
 ```bash
 git switch -c feature/add-farewell-message
 # edit Main.java to add a second System.out.println line
-git add src/main/java/com/fidelity/leap/Main.java
+git add src/main/java/com/neueda/leap/Main.java
 git commit -m "feat: add farewell message to startup output"
 git push -u origin feature/add-farewell-message
 ```
@@ -49,7 +49,7 @@ git switch feature/greeting-b
 git pull origin main
 # conflict markers appear in Main.java, exactly like Module 07
 # edit to the agreed final wording, remove <<<<<<<, =======, >>>>>>>
-git add src/main/java/com/fidelity/leap/Main.java
+git add src/main/java/com/neueda/leap/Main.java
 git commit
 git push
 ```

@@ -24,7 +24,7 @@ git push -u origin main
 git switch -c feat/add-greeting-method
 
 # 3. Make a small, clear change to Main.java, then commit with Conventional Commits format
-git add src/main/java/com/fidelity/leap/Main.java
+git add src/main/java/com/neueda/leap/Main.java
 git commit -m "feat: add greeting method to Main"
 
 # 4. Push the branch and open a PR via the GitHub UI (or gh CLI)
@@ -81,7 +81,7 @@ git switch -c feat/change-greeting-alice   # Partner A
 # Partner B does: git switch -c feat/change-greeting-bob
 
 # 10. Both edit the same line in Main.java to something different, commit, push, open a PR
-git add src/main/java/com/fidelity/leap/Main.java
+git add src/main/java/com/neueda/leap/Main.java
 git commit -m "feat: update greeting to say Hello Alice"
 git push -u origin feat/change-greeting-alice
 gh pr create --title "feat: update greeting to say Hello Alice" --body "..."
@@ -95,7 +95,7 @@ git fetch origin
 git merge origin/main
 # Git reports CONFLICT in Main.java — open the file, remove <<<<<<<, =======, >>>>>>> markers
 # Choose the correct final text, then:
-git add src/main/java/com/fidelity/leap/Main.java
+git add src/main/java/com/neueda/leap/Main.java
 git commit -m "chore: resolve merge conflict with main"
 git push
 # The PR now shows as mergeable → merge it.
