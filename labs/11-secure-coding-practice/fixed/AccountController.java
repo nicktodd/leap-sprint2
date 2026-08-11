@@ -1,4 +1,4 @@
-package com.fidelity.leap.paysprint;
+package com.neueda.leap.paysprint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

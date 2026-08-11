@@ -1,4 +1,4 @@
-package com.fidelity.leap.paysprint;
+package com.neueda.leap.paysprint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

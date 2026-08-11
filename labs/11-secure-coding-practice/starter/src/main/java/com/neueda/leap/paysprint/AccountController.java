@@ -12,17 +12,11 @@ public class AccountController {
     @Autowired
     private CurrentUserProvider currentUserProvider;
 
-    // FIX (A01): verify the account belongs to the authenticated caller
-    // before returning it.
+    // VULNERABILITY: fetches whatever account ID is in the URL, with no check
+    // that it belongs to the currently authenticated user.
     @GetMapping("/api/accounts/{accountId}")
     public Account getAccount(@PathVariable Long accountId) {
-        Account account = accountRepository.findById(accountId)
+        return accountRepository.findById(accountId)
                 .orElseThrow(() -> new NotFoundException("Account not found"));
-
-        if (!account.getOwnerId().equals(currentUserProvider.currentUserId())) {
-            throw new NotFoundException("Account not found");
-        }
-
-        return account;
     }
 }

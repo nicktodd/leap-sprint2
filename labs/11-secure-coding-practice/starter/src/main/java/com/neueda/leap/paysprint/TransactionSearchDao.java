@@ -1,9 +1,9 @@
 package com.neueda.leap.paysprint;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,18 +15,14 @@ public class TransactionSearchDao {
         this.connection = connection;
     }
 
-    // FIX (A05): a parameterised query with a bind parameter, not string
-    // concatenation or escaping. Note: a Copilot suggestion that merely
-    // escapes quotes in merchantName should be rejected, escaping is fragile;
-    // parameter binding removes the entire class of problem.
+    // VULNERABILITY: builds SQL by string concatenation with user input.
     public List<Transaction> searchByMerchant(String merchantName) throws SQLException {
-        String sql = "SELECT id, merchant_name, amount FROM transactions WHERE merchant_name = ?";
+        String sql = "SELECT id, merchant_name, amount FROM transactions "
+                + "WHERE merchant_name = '" + merchantName + "'";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, merchantName);
-            try (ResultSet rs = stmt.executeQuery()) {
-                return mapResults(rs);
-            }
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            return mapResults(rs);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.fidelity.leap.merchantportal;
+package com.neueda.leap.merchantportal;
 
 import org.springframework.web.bind.annotation.*;
 

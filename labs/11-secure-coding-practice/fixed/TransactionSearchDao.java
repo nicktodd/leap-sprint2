@@ -1,4 +1,4 @@
-package com.fidelity.leap.paysprint;
+package com.neueda.leap.paysprint;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
